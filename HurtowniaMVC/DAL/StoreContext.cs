@@ -9,6 +9,10 @@ namespace HurtowniaMVC.DAL
 {
     public class StoreContext : DbContext
     {
+        public StoreContext() : base("StoreContext")
+        {
+
+        }
         public DbSet<Czesc> Czesc { get; set; }
         public DbSet<Zamowienie> Zamowienie { get; set; }
         public DbSet<ZamowienieCzesc> ZamowienieCzesc { get; set; }
