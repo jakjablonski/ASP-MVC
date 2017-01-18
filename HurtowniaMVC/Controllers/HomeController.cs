@@ -20,5 +20,10 @@ namespace HurtowniaMVC.Controllers
             db.SaveChanges();
             return View();
         }
+
+        public ActionResult StaticContent(string viewname)
+        {
+            return View(viewname);
+        }
     }
 }

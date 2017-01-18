@@ -14,6 +14,25 @@ namespace HurtowniaMVC
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "ProductDetails",
+                url: "czesc-{id}.html",
+                defaults: new { controller = "Store", action = "Details" }
+                );
+
+            routes.MapRoute(
+                name: "StaticPages",
+                url: "strony/{viewname}.html",
+                defaults: new { controller = "Home", action = "StaticContent" }
+                );
+
+            routes.MapRoute(
+                name: "ProductList",
+                url: "kategorie/{nazwakategori}.html",
+                defaults: new { controller = "Store", action = "List" },
+                constraints: new { nazwakategori = @"[\w]+" }
+                );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

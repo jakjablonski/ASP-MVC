@@ -97,19 +97,49 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\owl.carousel.css" />
+    <Content Include="Content\css\responsive.css" />
     <Content Include="Content\images\black_file.gif" />
     <Content Include="Content\images\demo\80x80.gif" />
     <Content Include="Content\images\demo\960x360.gif" />
     <Content Include="Content\images\demo\index.html" />
     <Content Include="Content\images\index.html" />
     <Content Include="Content\images\orange_file.gif" />
+    <Content Include="Content\img\crossword.png" />
+    <Content Include="Content\img\product-1.jpg" />
+    <Content Include="Content\img\product-2.jpg" />
+    <Content Include="Content\img\product-3.jpg" />
+    <Content Include="Content\img\product-4.jpg" />
+    <Content Include="Content\img\product-5.jpg" />
+    <Content Include="Content\img\product-6.jpg" />
+    <Content Include="Content\img\product-thumb-1.jpg" />
+    <Content Include="Content\img\product-thumb-2.jpg" />
+    <Content Include="Content\img\product-thumb-3.jpg" />
+    <Content Include="Content\img\product-thumb-4.jpg" />
+    <Content Include="Content\img\services_logo__1.jpg" />
+    <Content Include="Content\img\services_logo__2.jpg" />
+    <Content Include="Content\img\services_logo__3.jpg" />
+    <Content Include="Content\img\services_logo__4.jpg" />
+    <Content Include="Content\img\slide-1.jpg" />
+    <Content Include="Content\img\slide-2.jpg" />
+    <Content Include="Content\img\slide-3.jpg" />
+    <Content Include="Content\js\jquery.easing.1.3.min.js" />
+    <Content Include="Content\js\jquery.sticky.js" />
+    <Content Include="Content\js\main.js" />
+    <Content Include="Content\js\owl.carousel.min.js" />
+    <Content Include="Content\style.css" />
     <Content Include="Global.asax" />
+    <Content Include="Prototype\cart.html" />
+    <Content Include="Prototype\checkout.html" />
     <Content Include="Prototype\index.html" />
+    <Content Include="Prototype\shop.html" />
+    <Content Include="Prototype\single-product.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="DAL\StoreContext.cs" />
     <Compile Include="DAL\StoreInitializer.cs" />
     <Compile Include="Global.asax.cs">
@@ -126,6 +156,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_StoreLayout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\Kontakt.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -135,6 +166,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Store\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
