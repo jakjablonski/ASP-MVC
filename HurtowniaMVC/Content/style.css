@@ -232,7 +232,8 @@ z-index: 9;
 .promo-area {
   background: none repeat scroll 0 0 #1abc9c;
   color: #fff;
-  padding: 77px 0 200px;
+  padding: 77px 0 20px;
+  float:left;
 }
 
 .brands-area {
@@ -243,17 +244,23 @@ z-index: 9;
 
 .promo-area .zigzag-bottom, .brands-area .zigzag-bottom{background: #fff}
 .single-promo {
-    border: 1px solid #17a78b;
+    
     font-size: 25px;
     font-weight: 200;
     padding: 20px 10px;
     text-align: center;
+
 }
 .single-promo i {
   font-size: 50px;
+  color: white;
 }
 
 .single-promo:hover {color: #fff;background: #222;border-color: #222}
+
+.menu{
+
+}
 
 .section-title {
   font-family: "Raleway",sans-serif;
@@ -938,6 +945,40 @@ a.about_paypal {
     font-size: 12px;
     margin-left: 15px;
 }
+nav.kategoria-horizontal ul {
+    overflow: hidden;
+    border-left: 1px solid #E5E5E5;
+    border-top: 1px solid #E5E5E5;
+    font-size: 28px;
+    font-family: 'Segoe UI Semibold', 'Segoe WP', 'Segoe UI';
+}
+
+    nav.kategoria-horizontal ul li {
+        margin: auto;
+        float: inherit;
+        width: 450px;
+        height: 54px;
+        text-align: left;
+        border-right: 2px solid #E5E5E5;
+        border-bottom: 1px solid #E5E5E5;
+        line-height: 59px;
+    }
+
+        nav.kategoria-horizontal ul li a {
+            width: 100%;
+            display: block;
+            height: 100%;
+            padding-left: 127px;
+            background-repeat: no-repeat;
+            background-position-x: 50px;
+            background-position-y: 50%;
+        }
+
+        nav.kategoria-horizontal ul li:hover {
+            -moz-box-shadow: inset 0 0 3px #bbbbbb;
+            -webkit-box-shadow: inset 0 0 3px #bbbbbb;
+            box-shadow: inset 0 0 3px #bbbbbb;
+        }
 
 
 #customer_details select, .shipping_calculator select {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HurtowniaMVC.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ namespace HurtowniaMVC.Controllers
 {
     public class StoreController : Controller
     {
+        StoreContext db = new StoreContext();
         // GET: Store
         public ActionResult Index()
         {
@@ -19,7 +21,16 @@ namespace HurtowniaMVC.Controllers
         }
         public ActionResult List(string nazwakategori)
         {
-            return View();
+            var kategoria = db.Kategoria.Include("Czesci").Where(g => g.Nazwa.ToUpper() == nazwakategori.ToUpper()).Single();
+            var czesci = kategoria.Czesci.ToList();
+            return View(czesci);
+        }
+      
+        [ChildActionOnly]
+        public ActionResult KategoriaMenu()
+        {
+            var kategoria = db.Kategoria.ToList();
+            return PartialView("_KategoriaMenu", kategoria);
         }
     }
 }

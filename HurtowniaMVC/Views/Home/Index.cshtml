@@ -1,1 +1,30 @@
-﻿<img src="../Content/img/logo.png" style="display: block; margin: 0 auto" />
+﻿@model HurtowniaMVC.ViewModels.HomeViewModel
+@{ 
+    
+}
+
+<img src="../Content/img/logo.png" style="display: block; margin: 0 auto" />
+
+   
+<div class="promo-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            @foreach (var kategoria in Model.Kategorie)
+            {
+                <div class="col-md-3 col-sm-6">
+                    <div class="single-promo">
+                        <i class="fa fa-refresh"></i>
+                        <p><a href="@Url.Action("List", "Store", new { nazwakategori = kategoria.Nazwa.ToLower() })" style="color:white;">
+
+    @kategoria.Nazwa
+</a></p>
+                    </div>
+                </div>
+            }
+            
+            
+        </div>
+    </div>
+</div> <
+

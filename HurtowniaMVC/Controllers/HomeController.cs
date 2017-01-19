@@ -1,5 +1,6 @@
 ﻿using HurtowniaMVC.DAL;
 using HurtowniaMVC.Models;
+using HurtowniaMVC.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +16,12 @@ namespace HurtowniaMVC.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            Czesc newCzesc = new Czesc { Nazwa = "Czesc", Cena = 10, Dostepna = true };
-            db.Czesc.Add(newCzesc);
-            db.SaveChanges();
-            return View();
+            var kategorie = db.Kategoria;
+            var vm = new HomeViewModel()
+            {
+                Kategorie = kategorie
+            };
+            return View(vm);
         }
 
         public ActionResult StaticContent(string viewname)

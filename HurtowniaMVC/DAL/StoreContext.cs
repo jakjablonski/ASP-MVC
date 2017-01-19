@@ -13,6 +13,7 @@ namespace HurtowniaMVC.DAL
         {
 
         }
+        public DbSet<Kategoria> Kategoria { get; set; }
         public DbSet<Czesc> Czesc { get; set; }
         public DbSet<Zamowienie> Zamowienie { get; set; }
         public DbSet<ZamowienieCzesc> ZamowienieCzesc { get; set; }

@@ -1,0 +1,21 @@
+﻿@model IEnumerable<HurtowniaMVC.Models.Kategoria>
+
+
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            @foreach (var kategoria in Model)
+            {
+                <div class="col-md-2 col-sm-5">
+                    <div class="single-promo" style="float:left;">
+                        <i class="fa fa-refresh"></i>
+                        <a href="@Url.Action("List", "Store", new { nazwakategori = kategoria.Nazwa.ToString() })" style="color:white;">
+                            @kategoria.Nazwa
+                           </a>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

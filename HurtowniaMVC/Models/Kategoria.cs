@@ -5,14 +5,11 @@ using System.Web;
 
 namespace HurtowniaMVC.Models
 {
-    public class Czesc
+    public class Kategoria
     {
-        public int CzescId { get; set; }
         public int KategoriaId { get; set; }
         public string Nazwa { get; set; }
-        public decimal Cena { get; set; }
-        public bool Dostepna { get; set; }
 
-        public virtual Kategoria Kategoria { get; set; }
+        public  ICollection<Czesc> Czesci { get; set; }
     }
 }
