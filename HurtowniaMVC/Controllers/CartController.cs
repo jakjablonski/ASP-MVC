@@ -32,5 +32,13 @@ namespace HurtowniaMVC.Controllers
             shoppingCartManager.AddToCart(id);
             return RedirectToAction("Index");
         }
+        public decimal GetCartItemsPrice()
+        {
+            return shoppingCartManager.GetCartTotalPrice();
+        }
+        public decimal GetCartItemsCount()
+        {
+            return shoppingCartManager.GetCartItemsCount();
+        }
     }
 }

@@ -16,7 +16,7 @@
                             @foreach (var cartItem in Model.CartItems)
                             {
                                 <tr id="cart-row-@cartItem.Czesc.CzescId">
-                                    <td><a href="@Url.Action("Details", "Store", new {id = cartItem.Czesc.CzescId} )"><img src="img/logo.png" /></a></td>
+                                    <td><a href="@Url.Action("Details", "Store", new {id = cartItem.Czesc.CzescId} )"><img src="../Content/img/prod.png" /></a></td>
                                     <td><a href="@Url.Action("Details", "Store", new {id = cartItem.Czesc.CzescId} )">@cartItem.Czesc.Nazwa</a></td>
                                     <td>Ilość: <span id="cart-item-count-@cartItem.Czesc.CzescId">@cartItem.Quantity</span></td>
                                     <td>@cartItem.TotalPrice</td>
@@ -47,4 +47,6 @@
     </div>
 </div>
 
-
+@section ScriptsBottom{
+    
+}
