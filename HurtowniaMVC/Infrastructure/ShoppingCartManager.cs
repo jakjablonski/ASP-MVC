@@ -25,7 +25,7 @@ namespace HurtowniaMVC.Infrastructure
                 cartItem.Quantity++;
             else
             {
-                var czescToAdd = db.Czesc.Where(c => c.CzescId == czescid).Single();
+                var czescToAdd = db.Czesc.Where(cz => cz.CzescId == czescid).Single();
                 if(czescToAdd != null)
                 {
                     var newCartItem = new CartItem()
