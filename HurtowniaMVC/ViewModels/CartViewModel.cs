@@ -6,9 +6,9 @@ using System.Web;
 
 namespace HurtowniaMVC.ViewModels
 {
-    public class HomeViewModel
+    public class CartViewModel
     {
-        public IEnumerable<Kategoria> Kategorie { get; set; }
-        public decimal TotalPrice { get; set; }
+        public List<CartItem> CartItems { get; set; }
+        public decimal TotalPrice { get; set; } 
     }
 }

@@ -17,7 +17,8 @@ namespace HurtowniaMVC.Controllers
         }
         public ActionResult Details(int id)
         {
-            return View();
+            var czesc = db.Czesc.Find(id);
+            return View(czesc);
         }
         public ActionResult List(string nazwakategori)
         {
