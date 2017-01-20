@@ -11,6 +11,8 @@ namespace HurtowniaMVC.Models
         public string UserId { get; set; }
         public string Imie { get; set; }
         public string Nazwisko { get; set; }
+        public string Miasto { get; set; }
+        public string Adres { get; set; }
         public string Email { get; set; }
         public string NumerTel { get; set; }
         public DateTime DataZamowienia { get; set; }

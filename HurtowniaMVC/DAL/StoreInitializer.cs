@@ -1,4 +1,5 @@
 ﻿using HurtowniaMVC.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,7 +9,7 @@ using System.Web;
 namespace HurtowniaMVC.DAL
 {
        
-    public class StoreInitializer : DropCreateDatabaseAlways<StoreContext>
+    public class StoreInitializer : DropCreateDatabaseIfModelChanges<StoreContext>
     {
         protected override void Seed(StoreContext context)
         {
@@ -26,7 +27,9 @@ namespace HurtowniaMVC.DAL
             kategorie.ForEach(k => context.Kategoria.Add(k));
             context.SaveChanges();
 
-            var czesci = new List<Czesc>
+          
+
+        var czesci = new List<Czesc>
             {
                 new Czesc { Nazwa = "Czesc1", Cena = 1 ,KategoriaId=1},
                 new Czesc { Nazwa = "Czesc2", Cena = 2 ,KategoriaId=1},
@@ -36,10 +39,10 @@ namespace HurtowniaMVC.DAL
                 new Czesc { Nazwa = "Czesc6", Cena = 6 ,KategoriaId=2},
 
             };
-            czesci.ForEach(cz => context.Czesc.Add(cz));
+        czesci.ForEach(cz => context.Czesc.Add(cz));
             context.SaveChanges();
 
             
         }
-    }
+}
 }

@@ -1,11 +1,14 @@
-﻿using HurtowniaMVC.DAL;
+﻿using HurtowniaMVC.App_Start;
+using HurtowniaMVC.DAL;
 using HurtowniaMVC.Infrastructure;
+using HurtowniaMVC.Models;
 using HurtowniaMVC.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity.Owin;
+
 
 namespace HurtowniaMVC.Controllers
 {
@@ -59,6 +62,40 @@ namespace HurtowniaMVC.Controllers
             };
 
             return Json(result);
+        }
+        private ApplicationUserManager _userManager;
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
+        public async Task<ActionResult> Checkout()
+        {
+            if (Request.IsAuthenticated)
+            {
+                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+
+                var zamowienie = new Zamowienie
+                {
+                  
+                    Imie = user.UserData.FirstName,
+                    Nazwisko = user.UserData.LastName,
+                    Adres = user.UserData.Address,
+                    NumerTel = user.UserData.PhoneNumber,
+                    Email = user.UserData.Email,
+                    Miasto = user.UserData.CodeAndCity,
+                };
+
+                return View(zamowienie);
+            }
+            else
+                return RedirectToAction("Login", "Account", new { returnUrl = Url.Action("Checkout", "Cart") });
         }
     }
 }

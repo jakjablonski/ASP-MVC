@@ -1,0 +1,67 @@
+﻿@model HurtowniaMVC.Models.Zamowienie
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_StoreLayout.cshtml";
+}
+
+
+            @{ Html.EnableClientValidation(); }
+
+            @using (@Html.BeginForm("Checkout", "Cart"))
+            {
+                <table id="checkout-address-table">
+                    <tr>
+                        <td>@Html.LabelFor(o => o.Imie, "Imię:")</td>
+                        <td>@Html.TextBoxFor(o => o.Imie)</td>
+                        <td>@Html.ValidationMessageFor(o => o.Imie)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(o => o.Nazwisko, "Nazwisko")</td>
+                        <td>@Html.TextBoxFor(o => o.Nazwisko)</td>
+                        <td>@Html.ValidationMessageFor(o => o.Nazwisko)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(o => o.Adres, "Adres")</td>
+                        <td>@Html.TextBoxFor(o => o.Adres)</td>
+                        <td>@Html.ValidationMessageFor(o => o.Adres)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(o => o.Miasto, "Miasto")</td>
+                        <td>@Html.TextBoxFor(o => o.Miasto)</td>
+                        <td>@Html.ValidationMessageFor(o => o.Miasto)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(o => o.NumerTel, "Numer telefonu")</td>
+                        <td>@Html.TextBoxFor(o => o.NumerTel)</td>
+                        <td>@Html.ValidationMessageFor(o => o.NumerTel)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(o => o.Email, "Adres e-mail")</td>
+                        <td>@Html.TextBoxFor(o => o.Email)</td>
+                        <td>@Html.ValidationMessageFor(o => o.Email)</td>
+                    </tr>
+                    </table>
+
+                @Html.ValidationSummary()
+
+                <hr style="margin-bottom: 50px;" />
+
+                <div class="section-button-container">
+                    <a class="button-link" href="">Wróć</a>
+                    <input type="submit" class="button-link" style="" value="Potwierdź" />
+                </div>
+            }
+
+      
+
+@section ScriptsBottom
+{
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}
+
+
+
+
+
