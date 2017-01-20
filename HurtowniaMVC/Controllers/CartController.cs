@@ -40,5 +40,25 @@ namespace HurtowniaMVC.Controllers
         {
             return shoppingCartManager.GetCartItemsCount();
         }
+
+        public ActionResult RemoveFromCart(int czescID)
+        {
+            ShoppingCartManager shoppingCartManager = new ShoppingCartManager(this.sessionManager, this.db);
+
+            int itemCount = shoppingCartManager.RemoveFromCart(czescID);
+            int cartItemsCount = shoppingCartManager.GetCartItemsCount();
+            decimal cartTotal = shoppingCartManager.GetCartTotalPrice();
+
+            // Return JSON to process it in JavaScript
+            var result = new CartRemoveViewModel
+            {
+                RemoveItemId = czescID,
+                RemovedItemCount = itemCount,
+                CartTotal = cartTotal,
+                CartItemsCount = cartItemsCount
+            };
+
+            return Json(result);
+        }
     }
 }

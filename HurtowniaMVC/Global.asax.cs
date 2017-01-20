@@ -1,4 +1,5 @@
-﻿using HurtowniaMVC.DAL;
+﻿
+using HurtowniaMVC.DAL;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -15,7 +16,7 @@ namespace HurtowniaMVC
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-
+           
             Database.SetInitializer<StoreContext>(new StoreInitializer());
         }
     }
