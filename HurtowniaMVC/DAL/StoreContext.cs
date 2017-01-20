@@ -1,4 +1,6 @@
-﻿using HurtowniaMVC.Models;
+﻿using Hurtownia.Models;
+using HurtowniaMVC.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,11 +9,15 @@ using System.Web;
 
 namespace HurtowniaMVC.DAL
 {
-    public class StoreContext : DbContext
+    public class StoreContext : IdentityDbContext<ApplicationUser>
     {
         public StoreContext() : base("StoreContext")
         {
 
+        }
+        public static StoreContext Create()
+        {
+            return new StoreContext();
         }
         public DbSet<Kategoria> Kategoria { get; set; }
         public DbSet<Czesc> Czesc { get; set; }

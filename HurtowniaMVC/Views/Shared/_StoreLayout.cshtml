@@ -45,10 +45,16 @@
                         <h1><a href="@Url.Content("~/")">e<span>Hurtownia Czesci</span></a></h1>
                     </div>
                 </div>
-
+                <div class="col-sm-6">
+                    <div class="shopping-item">
+                        @Html.Partial("_PartialView")
+                    </div>
+                </div>
+                
                 <div class="col-sm-6">
                     <div class="shopping-item">
                         <a href="@Url.Action("Index", "Cart")">Koszyk - <span class="cart-amunt">(@Html.Action("GetCartItemsPrice", "Cart"))</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">@Html.Action("GetCartItemsCount", "Cart")</span></a>
+                        
                     </div>
                 </div>
             </div>
