@@ -1,14 +1,14 @@
 ﻿using HurtowniaMVC.App_Start;
 using HurtowniaMVC.DAL;
 using HurtowniaMVC.Infrastructure;
-using HurtowniaMVC.Models;
 using HurtowniaMVC.ViewModels;
+
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.Owin;
-
+using HurtowniaMVC.Models;
 
 namespace HurtowniaMVC.Controllers
 {

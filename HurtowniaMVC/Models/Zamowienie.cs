@@ -1,5 +1,7 @@
-﻿using System;
+﻿using HurtowniaMVC.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -23,7 +25,10 @@ namespace HurtowniaMVC.Models
     }
     public enum StanZamowienia
     {
-        Nowe,
-        Wyslane
+        [Display(Name = "nowe")]
+        New,
+
+        [Display(Name = "wysłane")]
+        Shipped
     }
 }

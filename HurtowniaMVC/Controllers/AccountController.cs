@@ -10,7 +10,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Hurtownia.Models;
 using System.Threading.Tasks;
-using HurtowniaMVC.Models;
+
 
 namespace HurtowniaMVC.Controllers
 {

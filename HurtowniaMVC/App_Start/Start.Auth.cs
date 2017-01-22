@@ -4,7 +4,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 using HurtowniaMVC.DAL;
-using HurtowniaMVC.Models;
+using HurtowniaMVC.ViewModels;
 using System;
 using HurtowniaMVC.App_Start;
 using Hurtownia.Models;
