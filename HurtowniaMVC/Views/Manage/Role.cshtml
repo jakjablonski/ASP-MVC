@@ -1,0 +1,28 @@
+﻿@model IEnumerable<HurtowniaMVC.Models.Roles>
+@{
+    ViewBag.Title = "Wszystkie użytkownicy";
+    Layout = "~/Views/Shared/_Storelayout.cshtml";
+}
+<h2>Lista wszystkich użytkowników</h2>
+@using (Html.BeginForm())
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoleName)
+            </th>
+            <td></td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(model => item.UserName)</td>
+                <td>@Html.DisplayFor(model => item.RoleNames) </td>
+                <td><button class="btn btn-danger" onclick="location.href='@Url.Action("Edit", new {id = item.UserId })';return false;">Edytuj &raquo;</button></td>
+            </tr>
+        }
+    </table>
+}

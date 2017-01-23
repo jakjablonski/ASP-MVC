@@ -1,4 +1,5 @@
-﻿using HurtowniaMVC.ViewModels;
+﻿using Hurtownia.Models;
+using HurtowniaMVC.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,6 +12,8 @@ namespace HurtowniaMVC.Models
     {
         public int ZamowienieId { get; set; }
         public string UserId { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
         public string Imie { get; set; }
         public string Nazwisko { get; set; }
         public string Miasto { get; set; }

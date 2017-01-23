@@ -1,0 +1,132 @@
+﻿@model IEnumerable<HurtowniaMVC.Models.Zamowienie>
+@{
+    ViewBag.Title = "OrdersList";
+    Layout = "~/Views/Shared/_ManageView.cshtml";
+}
+
+
+<div>
+
+    <hr />
+
+    <h2 class="manageHeader" style="margin-bottom: 30px; float: left;
+        position: relative;">Twoje zamówienia</h2>
+
+    <div>
+
+        @if (Model.Any())
+        {
+
+            <table id="orders-table" style="width: 100%;
+    font-size: 14px;
+    line-height: 17px;
+    padding: 10px;
+    height: 35px;">
+
+                @foreach (var zamowienie in Model)
+                {
+                    <tr @if (zamowienie.StanZamowienia == HurtowniaMVC.Models.StanZamowienia.New) { <text> class="newOrder" </text>      }>
+                        <td>
+                            <strong>Nr zamówienia: </strong>@zamowienie.ZamowienieId
+                        </td>
+                        <td>
+                            <strong>Data: </strong>
+                            @zamowienie.DataZamowienia.ToString("dd-MM-yyyy")
+                        </td>
+                        <td>
+                            <strong>Stan: </strong><br />
+
+                            @if (ViewBag.UserIsAdmin)
+                            {
+                                using (Html.BeginForm("ChangeOrderState", "Manage"))
+                                {
+                                    @Html.HiddenFor(z => zamowienie.ZamowienieId)
+                                    @Html.EnumDropDownListFor(z => zamowienie.StanZamowienia, new { @class = "orderstateddl"  })
+                                }
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(z => zamowienie.StanZamowienia)
+                            }
+
+                        </td>
+
+                        <td>
+                            <strong>Dane wysyłkowe:</strong><br />
+                            @zamowienie.Imie @zamowienie.Nazwisko<br />
+                            @zamowienie.Adres<br />
+                            @zamowienie.Miasto<br />
+                        </td>
+                        <td>
+                            <strong>Łączny koszt:</strong> @zamowienie.KwotaZamowienia zł
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">
+                            <section>
+                                <ul class="product-details-info">
+
+                                    @foreach (var zamownienieCzesc in zamowienie.ZamowienieCzesc)
+                                    {
+                                        <li>
+                                            <article style="font-size:small; position:center">
+                                                <a   href="@Url.Action("Details", "Store", new { id = zamownienieCzesc.CzescId })">
+                                                    
+                                                    
+                                                        @zamownienieCzesc.Czesc.Nazwa<br />
+                                                        sztuk: @zamownienieCzesc.Quantity, łącznie: @(zamownienieCzesc.Quantity * zamownienieCzesc.UnitPrice)  zł
+                                                    
+                                                </a>
+                                            </article>
+                                        </li>
+                                    }
+
+                                </ul>
+
+                            </section>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1"></td>
+                    </tr>
+
+                <!-- Next order -->
+
+                }
+
+
+            </table>
+        }
+        else
+        {
+            <div style="text-align: center; margin-top: 50px; margin-bottom: 50px;">
+                Brak zamówień.
+            </div>
+        }
+    </div>
+
+
+
+</div>
+
+
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<script>
+    $(".orderstateddl").on('change', function (e) {
+        //e.preventDefault();
+
+        var f = $(this.form);
+        var tr = f.closest("tr");
+
+        var action = f.attr("action");
+        var serializedForm = f.serialize();
+        $.post(action, serializedForm).done(function (data) {
+            if (data == '@HurtowniaMVC.Models.StanZamowienia.New.ToString()') {
+                tr.addClass("newOrder")
+            }
+            else {
+                tr.removeClass("newOrder");
+            }
+          });
+    });
+</script>

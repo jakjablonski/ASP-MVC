@@ -276,30 +276,13 @@ namespace HurtowniaMVC.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public StanZamowienia ChangeStanZamowienia(Zamowienie zamowienie)
+        public StanZamowienia ChangeOrderStates(Zamowienie zamowienie)
         {
             Zamowienie zamowienieToModify = db.Zamowienie.Find(zamowienie.ZamowienieId);
             zamowienieToModify.StanZamowienia = zamowienie.StanZamowienia;
             db.SaveChanges();
 
-            if (zamowienieToModify.StanZamowienia == StanZamowienia.Shipped)
-            {
-                // Schedule confirmation
-                //string url = Url.Action("SendStatusEmail", "Manage", new { orderid = orderToModify.OrderId, lastname = orderToModify.LastName }, Request.Url.Scheme);
-
-                //BackgroundJob.Enqueue(() => Helpers.CallUrl(url));
-
-                //IMailService mailService = new HangFirePostalMailService();
-                //mailService.SendOrderShippedEmail(orderToModify);
-
-                //mailService.SendOrderShippedEmail(orderToModify);
-
-                //dynamic email = new Postal.Email("OrderShipped");
-                //email.To = orderToModify.Email;
-                //email.OrderId = orderToModify.OrderId;
-                //email.FullAddress = string.Format("{0} {1}, {2}, {3}", orderToModify.FirstName, orderToModify.LastName, orderToModify.Address, orderToModify.CodeAndCity);
-                //email.Send();
-            }
+          
 
             return zamowienie.StanZamowienia;
         }

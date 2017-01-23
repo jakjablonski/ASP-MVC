@@ -94,7 +94,7 @@ namespace HurtowniaMVC.Infrastructure
             var cart = this.GetCart();
 
             newZamowienie.DataZamowienia = DateTime.Now;
-            //newZamowienie.UserId = userId;
+            newZamowienie.UserId = userId;
 
             this.db.Zamowienie.Add(newZamowienie);
 

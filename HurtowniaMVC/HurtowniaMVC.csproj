@@ -235,6 +235,7 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="DAL\StoreContext.cs" />
     <Compile Include="DAL\StoreInitializer.cs" />
@@ -248,6 +249,7 @@
     <Compile Include="Models\Czesc.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Kategoria.cs" />
+    <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\UserData.cs" />
     <Compile Include="Models\Zamowienie.cs" />
     <Compile Include="Models\ZamowienieCzesc.cs" />
@@ -258,6 +260,7 @@
     <Compile Include="ViewModels\CartViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModel.cs" />
+    <Compile Include="ViewModels\RoleViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -279,6 +282,10 @@
     <Content Include="Views\Cart\Checkout.cshtml" />
     <Content Include="Views\Shared\_ManageView.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Cart\OrderConfirmation.cshtml" />
+    <Content Include="Views\Manage\OrdersList.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Enum.cshtml" />
+    <Content Include="Views\Manage\Role.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -289,6 +296,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\demo\" />
+    <Folder Include="Views\Role\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
