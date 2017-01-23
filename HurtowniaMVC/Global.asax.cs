@@ -18,6 +18,7 @@ namespace HurtowniaMVC
             RouteConfig.RegisterRoutes(RouteTable.Routes);
            
             Database.SetInitializer<StoreContext>(new StoreInitializer());
+            
         }
     }
 }

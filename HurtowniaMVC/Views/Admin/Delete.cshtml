@@ -1,0 +1,47 @@
+﻿@model HurtowniaMVC.Models.Czesc
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_StoreLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <h2>Usuwanie czesci</h2>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CzescId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nazwa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KategoriaId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cena)
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.CzescId)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Nazwa)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Kategoria.Nazwa)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Cena)
+            </td>
+        </tr>
+    </table>
+    <br />
+    <input type="submit" value="Usuń" class="btn btn-danger" />
+    <br /><br />
+    <button><a href="../Index">Wróć do listy</a></button>
+}

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<HurtowniaMVC.Models.Roles>
+
+@{
+    ViewBag.Title = "Edycja ról";
+    Layout = "~/Views/Shared/_Storelayout.cshtml";
+}
+<h2>Edycja roli użytkownika</h2>
+@using (Html.BeginForm())
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoleName)
+            </th>
+            <th>
+                Wybrana rola
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @ViewBag.user
+            </td>
+            <td>
+                @ViewBag.role
+            </td>
+            <td>
+                @Html.DropDownList("userroles", (SelectList)ViewBag.userroles)
+            </td>
+        </tr>
+    </table>
+    <br />
+    <input type="submit" value="Zapisz" class="btn btn-danger" />
+    <br /><br />
+    <button><a href="../Index">Wróć do listy</a></button>
+}

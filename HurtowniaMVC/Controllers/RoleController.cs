@@ -60,6 +60,65 @@ namespace HurtowniaMVC.Controllers
 
             return View(id);
         }
-        
+
+        public ActionResult Index()
+        {
+            var users = UserManager.Users.ToList();
+            var roles = new List<Models.Roles>();
+
+            foreach (var user in users)
+            {
+                var r = new Models.Roles
+                {
+                    UserName = user.UserName,
+                    UserId = user.Id
+                };
+                roles.Add(r);
+            }
+            
+            foreach (var user in roles)
+            {
+                user.RoleNames = UserManager.GetRoles(UserManager.Users.First(s => s.UserName == user.UserName).Id);
+            }
+            return View(roles);
+
+            
+        }
+
+        public ActionResult Edit(string id)
+        {
+           
+            var userName = UserManager.FindById(id);
+            ViewBag.user = userName.UserName;
+            bool rola = UserManager.IsInRole(id, "Uzytkownik");
+            if (rola == true) { ViewBag.role = "Uzytkownik"; }
+            else { ViewBag.role = "Admin"; }
+            var roles = RoleManager.Roles.ToList();
+            ViewBag.userroles = new SelectList(roles, "Id", "Name");
+            return View();
+        }
+
+        [HttpPost, ActionName("Edit")]
+        public ActionResult EditConfirmed(string id, FormCollection Form)
+        {
+            
+            string oldRoleId = "";
+            string newRoleId = Request.Form["userroles"];
+            bool rola = UserManager.IsInRole(id, "Uzytkownik");
+            if (newRoleId == "1") { newRoleId = "Admin"; }
+            else { newRoleId = "Uzytkownik"; }
+            if (rola == true) { oldRoleId = "Uzytkownik"; } else { oldRoleId = "Admin"; }
+            if (newRoleId == oldRoleId)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                UserManager.RemoveFromRole(id, oldRoleId);
+                UserManager.AddToRole(id, newRoleId);
+                return RedirectToAction("Index");
+            }
+        }
+
     }
 }

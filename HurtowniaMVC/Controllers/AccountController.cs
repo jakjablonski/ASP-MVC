@@ -104,7 +104,8 @@ namespace HurtowniaMVC.Controllers
                 {
                     var user = new ApplicationUser { UserName = model.Email, Email = model.Email, UserData = new UserData() };
                     var result = await UserManager.CreateAsync(user, model.Password);
-                    if (result.Succeeded)
+                    UserManager.AddToRole(user.Id, "Uzytkownik");
+                if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 

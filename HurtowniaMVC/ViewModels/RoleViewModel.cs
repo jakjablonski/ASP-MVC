@@ -9,6 +9,8 @@ namespace HurtowniaMVC.ViewModels
 {
     public class RoleViewModel
     {
+
+
         public IEnumerable<string> RoleNames { get; set; }
         public IEnumerable<string> RoleIds { get; set; }
         public string UserId { get; set; }

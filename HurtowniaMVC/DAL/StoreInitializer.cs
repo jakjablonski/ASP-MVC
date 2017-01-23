@@ -1,8 +1,10 @@
 ﻿using Hurtownia.Models;
+using HurtowniaMVC.App_Start;
 using HurtowniaMVC.Models;
 using HurtowniaMVC.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -17,6 +19,7 @@ namespace HurtowniaMVC.DAL
         protected override void Seed(StoreContext context)
         {
             SeedStoreData(context);
+            InitializeIdentityForEF(context);
             base.Seed(context);
         }
 
@@ -45,17 +48,19 @@ namespace HurtowniaMVC.DAL
             czesci.ForEach(cz => context.Czesc.Add(cz));
             context.SaveChanges();
         }
-        public static void InitializeIdentityForEF(StoreContext db)
+        public static void InitializeIdentityForEF(StoreContext context)
         {
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
             //var userManager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
             //var roleManager = HttpContext.Current.GetOwinContext().Get<ApplicationRoleManager>();
             const string name = "admin@admin.pl";
-            const string password = "123";
+            const string password = "Kuba1@";
             const string roleName = "Admin";
 
+            
+            const string userroleName = "Uzytkownik";
 
             var user = userManager.FindByName(name);
             if (user == null)
@@ -64,6 +69,7 @@ namespace HurtowniaMVC.DAL
                 var result = userManager.Create(user, password);
                 result = userManager.SetLockoutEnabled(user.Id, false);
             }
+       
 
             //Create Role Admin if it does not exist
             var role = roleManager.FindByName(roleName);
@@ -71,6 +77,12 @@ namespace HurtowniaMVC.DAL
             {
                 role = new IdentityRole(roleName);
                 var roleresult = roleManager.Create(role);
+            }
+            var userrole = roleManager.FindByName(userroleName);
+            if (userrole == null)
+            {
+                userrole = new IdentityRole(userroleName);
+                var roleresult = roleManager.Create(userrole);
             }
 
             //var user = userManager.FindByName(name);
@@ -87,6 +99,8 @@ namespace HurtowniaMVC.DAL
             {
                 var result = userManager.AddToRole(user.Id, role.Name);
             }
+
+
         }
     }
 }

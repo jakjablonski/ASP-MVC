@@ -47,12 +47,7 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a class="manageLink" href="@Url.Action("Index", "Home")">
-                            Start
-                        </a>
-                        <a class="manageLink" href="@Url.Action("Index", "Manage")">
-                            Twoje dane
-                        </a>
+                        
        
                     </div>
                 </div>
@@ -86,9 +81,17 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="@Url.Content("~/")">Strona Domowa</a></li>
-                        <li><a href="shop.html">Czesci</a></li>
-                        <li><a href="cart.html">Koszyk</a></li>
-                        <li><a href="#">Kategorie</a></li>
+                        <li><a class="manageLink" href="@Url.Action("Index", "Manage")">Twoje dane</a></li>
+                        <li><a href="@Url.Action("Index", "Cart")">Koszyk</a></li>
+                        <li>
+                            @if(User.IsInRole("Admin"))
+                            {
+                                <a class="magnetLink" href="@Url.Action("AddProduct","Manage")">
+                                Dodaj Produkt
+                            </a> 
+                            }
+                            
+                        </li>
                         <li><a href="@Url.Action("StaticContent", "Home", new { viewname = "kontakt" })">Kontakt</a></li>
                     </ul>
                 </div>

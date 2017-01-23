@@ -249,6 +249,7 @@ z-index: 9;
     font-weight: 200;
     padding: 20px 10px;
     text-align: center;
+    border-spacing: 10px 10px;
 
 }
 .single-promo i {
@@ -833,18 +834,21 @@ text-transform: uppercase;}
 table.shop_table {
     border-bottom: 1px solid #ddd;
     border-right: 1px solid #ddd;
+    border-spacing: 10px 10px;
     margin-bottom: 50px;
     width: 100%;
 }
 table.shop_table th, table.shop_table td {
     border-left: 1px solid #ddd;
     border-top: 1px solid #ddd;
+    border-spacing: 10px 10px;
     padding: 15px;
     text-align: center;
 }
 table.shop_table th {
     background: none repeat scroll 0 0 #f4f4f4;
     font-size: 15px;
+    border-spacing: 10px 10px;
     text-transform: uppercase;
 }
 td.product-thumbnail img {
@@ -861,6 +865,7 @@ div.quantity input.plus, div.quantity input.minus {
     height: 25px;
     line-height: 15px;
     width: 25px;
+    border-spacing: 10px 10px;
 }
 td.product-quantity div.quantity {
     float: none;
@@ -1041,6 +1046,7 @@ table.shop_table td.product-remove a {
   display: inline-block;
   padding: 0 5px 2px;
   text-transform: uppercase;
+  border-spacing: 10px 10px;
 }
 
 

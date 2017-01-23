@@ -1,0 +1,40 @@
+﻿@model HurtowniaMVC.Models.Czesc
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_StoreLayout.cshtml";
+}
+
+<h2>Podgląd informacji o czesci</h2>
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CzescId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nazwa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cena)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kategoria.Nazwa)
+        </th>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(model => model.CzescId)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Nazwa)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Cena)
+        </td>
+        <td>
+            @ViewBag.kategoriaName
+        </td>
+    </tr>
+</table>
+<br />
+<button><a href="../Index">Wróć do listy</a></button>
