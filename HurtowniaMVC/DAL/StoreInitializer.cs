@@ -14,7 +14,7 @@ using System.Web;
 namespace HurtowniaMVC.DAL
 {
 
-    public class StoreInitializer : DropCreateDatabaseAlways<StoreContext>
+    public class StoreInitializer : DropCreateDatabaseIfModelChanges<StoreContext>
     {
         protected override void Seed(StoreContext context)
         {

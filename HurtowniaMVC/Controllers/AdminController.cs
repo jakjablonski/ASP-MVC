@@ -15,6 +15,7 @@ using System.Data;
 
 namespace HurtowniaMVC.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
 

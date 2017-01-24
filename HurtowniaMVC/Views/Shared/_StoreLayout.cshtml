@@ -95,6 +95,13 @@
                             }
 
                         </li>
+                        <li>
+                            @if (Request.IsAuthenticated)
+                            {
+                                <a href="@Url.Action("OrdersList", "Manage")">Zamowienia</a>
+                            }
+
+                        </li>
                         <li><a href="@Url.Action("StaticContent", "Home", new { viewname = "kontakt" })">Kontakt</a></li>
 
                         

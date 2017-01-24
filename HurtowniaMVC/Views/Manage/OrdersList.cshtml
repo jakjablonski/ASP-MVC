@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<HurtowniaMVC.Models.Zamowienie>
 @{
     ViewBag.Title = "OrdersList";
-    Layout = "~/Views/Shared/_ManageView.cshtml";
+    Layout = "~/Views/Shared/_StoreLayout.cshtml";
 }
 
 
@@ -109,7 +109,7 @@
 
 </div>
 
-
+@section ScriptsBottom{
 <script src="~/Scripts/jquery-3.1.1.js"></script>
 <script>
     $(".orderstateddl").on('change', function (e) {
@@ -130,3 +130,5 @@
           });
     });
 </script>
+
+}

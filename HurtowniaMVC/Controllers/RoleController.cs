@@ -15,7 +15,7 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace HurtowniaMVC.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class RoleController : Controller
     {
         StoreContext db = new StoreContext();
