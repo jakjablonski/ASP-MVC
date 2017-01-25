@@ -1,0 +1,20 @@
+﻿
+@model HurtowniaMVC.Models.Zamowienie
+
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_StoreLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <h2>Czy napewno chcesz usunać?</h2>
+    
+    <br />
+    <input type="submit" value="Usuń" class="btn btn-danger" />
+    <br /><br />
+    <button><a href="@Url.Action("OrdersList","Manage")">Wróć do listy</a></button>
+}

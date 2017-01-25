@@ -71,18 +71,20 @@ namespace HurtowniaMVC.App_Start
     }
 
     // Configure the RoleManager used in the application. RoleManager is defined in the ASP.NET Identity core assembly
-    public class ApplicationRoleManager : RoleManager<IdentityRole>
+    public class ApplicationRoleManager : RoleManager<ApplicationRole>
     {
-        public ApplicationRoleManager(IRoleStore<IdentityRole, string> roleStore)
+        public ApplicationRoleManager(IRoleStore<ApplicationRole, string> roleStore)
             : base(roleStore)
         {
         }
 
         public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
         {
-            return new ApplicationRoleManager(new RoleStore<IdentityRole>(context.Get<StoreContext>()));
+            return new ApplicationRoleManager(new RoleStore<ApplicationRole>(context.Get<StoreContext>()));
         }
     }
+
+    
 
     public class EmailService : IIdentityMessageService
     {
@@ -101,6 +103,8 @@ namespace HurtowniaMVC.App_Start
             return Task.FromResult(0);
         }
     }
+
+
 
     // This is useful if you do not want to tear down the database each time you run the application.
     // public class ApplicationDbInitializer : DropCreateDatabaseAlways<ApplicationDbContext>

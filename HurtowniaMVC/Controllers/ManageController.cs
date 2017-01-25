@@ -12,6 +12,7 @@ using Hurtownia.Models;
 using System.Collections.Generic;
 using System.Data.Entity;
 using HurtowniaMVC.Models;
+using System.Net;
 
 namespace HurtowniaMVC.Controllers
 {
@@ -274,112 +275,30 @@ namespace HurtowniaMVC.Controllers
             return View(userZamowienie);
         }
 
-        [HttpPost]
-        [Authorize(Roles = "Admin")]
-        public StanZamowienia ChangeOrderStates(Zamowienie zamowienie)
+        public ActionResult Delete(int? id)
         {
-            Zamowienie zamowienieToModify = db.Zamowienie.Find(zamowienie.ZamowienieId);
-            zamowienieToModify.StanZamowienia = zamowienie.StanZamowienia;
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Zamowienie zamowienie = db.Zamowienie.Find(id);
+            if(zamowienie == null)
+            {
+                return HttpNotFound();
+            }
+            return View(zamowienie);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Zamowienie zamowienie = db.Zamowienie.Find(id);
+            db.Zamowienie.Remove(zamowienie);
             db.SaveChanges();
-
-          
-
-            return zamowienie.StanZamowienia;
+            return RedirectToAction("OrdersList");
         }
 
-        [Authorize(Roles = "Admin")]
-        public ActionResult AddProduct(int? czescId, bool? confirmSuccess)
-        {
-            if (czescId.HasValue)
-                ViewBag.EditMode = true;
-            else
-                ViewBag.EditMode = false;
-
-            var result = new EditProductViewModel();
-            var kategoria = db.Kategoria.ToArray();
-            result.Kategoria = kategoria;
-            result.ConfirmSuccess = confirmSuccess;
-
-            Czesc cz;
-
-            if (!czescId.HasValue)
-            {
-                cz = new Czesc();
-            }
-            else
-            {
-                cz = db.Czesc.Find(czescId);
-            }
-
-            result.Czesc = cz;
-
-            return View(result);
-        }
-
-        [HttpPost]
-        public ActionResult AddProduct(HttpPostedFileBase file, EditProductViewModel model)
-        {
-            if (model.Czesc.CzescId > 0)
-            {
-                // Saving existing entry
-
-                db.Entry(model.Czesc).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("AddProduct", new { confirmSuccess = true });
-            }
-            else
-            {
-                // Creating new entry
-
-                var f = Request.Form;
-                // Verify that the user selected a file
-                if (file != null && file.ContentLength > 0)
-                {
-                    // Generate filename
-
-                    //var fileExt = Path.GetExtension(file.FileName);
-                    //var filename = Guid.NewGuid() + fileExt;
-
-                    //var path = Path.Combine(Server.MapPath(AppConfig.PhotosFolderRelative), filename);
-                    //file.SaveAs(path);
-
-                    //// Save info to DB
-                    //model.Album.CoverFileName = filename;
-                    //model.Album.DateAdded = DateTime.Now;
-
-                    //db.Entry(model.Album).State = EntityState.Added;
-                    //db.SaveChanges();
-
-                    return RedirectToAction("AddProduct", new { confirmSuccess = true });
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Nie wskazano pliku.");
-                    var kategoria = db.Kategoria.ToArray();
-                    model.Kategoria = kategoria;
-                    return View(model);
-                }
-            }
-
-        }
-
-        //public ActionResult HideProduct(int czescId)
-        //{
-        //    var album = db.Czesc.Find(czescId);
-        //    czescId.IsHidden = true;
-        //    db.SaveChanges();
-
-        //    return RedirectToAction("AddProduct", new { confirmSuccess = true });
-        //}
-
-        //public ActionResult UnhideProduct(int albumId)
-        //{
-        //    var album = db.Albums.Find(albumId);
-        //    album.IsHidden = false;
-        //    db.SaveChanges();
-
-        //    return RedirectToAction("AddProduct", new { confirmSuccess = true });
-        //}
 
     }
 }

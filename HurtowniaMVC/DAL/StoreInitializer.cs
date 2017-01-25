@@ -14,7 +14,7 @@ using System.Web;
 namespace HurtowniaMVC.DAL
 {
 
-    public class StoreInitializer : DropCreateDatabaseIfModelChanges<StoreContext>
+    public class StoreInitializer : DropCreateDatabaseAlways<StoreContext>
     {
         protected override void Seed(StoreContext context)
         {
@@ -62,6 +62,13 @@ namespace HurtowniaMVC.DAL
             
             const string userroleName = "Uzytkownik";
 
+            //Create Role Admin if it does not exist
+            var role = roleManager.FindByName(roleName);
+            if (role == null)
+            {
+                role = new ApplicationRole(roleName);
+                var roleresult = roleManager.Create(role);
+            }
             var user = userManager.FindByName(name);
             if (user == null)
             {
@@ -69,19 +76,20 @@ namespace HurtowniaMVC.DAL
                 var result = userManager.Create(user, password);
                 result = userManager.SetLockoutEnabled(user.Id, false);
             }
-       
 
-            //Create Role Admin if it does not exist
-            var role = roleManager.FindByName(roleName);
-            if (role == null)
-            {
-                role = new IdentityRole(roleName);
-                var roleresult = roleManager.Create(role);
-            }
+          
+
+            ////Create Role Admin if it does not exist
+            //var role = roleManager.FindByName(roleName);
+            //if (role == null)
+            //{
+            //    role = new IdentityRole(roleName);
+            //    var roleresult = roleManager.Create(role);
+            //}
             var userrole = roleManager.FindByName(userroleName);
             if (userrole == null)
             {
-                userrole = new IdentityRole(userroleName);
+                userrole = new ApplicationRole(userroleName);
                 var roleresult = roleManager.Create(userrole);
             }
 

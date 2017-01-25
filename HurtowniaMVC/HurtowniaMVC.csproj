@@ -213,6 +213,8 @@
     <Content Include="Prototype\index.html" />
     <Content Include="Prototype\shop.html" />
     <Content Include="Prototype\single-product.html" />
+    <None Include="Properties\PublishProfiles\Hurtownia - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\HurtowniaMVC20170124041334 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -295,6 +297,8 @@
     <Content Include="Views\Admin\Details.cshtml" />
     <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Views\Admin\Delete.cshtml" />
+    <Content Include="Views\Manage\Delete.cshtml" />
+    <Content Include="Views\Role\Index2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

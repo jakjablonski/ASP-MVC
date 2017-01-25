@@ -10,7 +10,9 @@
     <hr />
 
     <h2 class="manageHeader" style="margin-bottom: 30px; float: left;
-        position: relative;">Twoje zamówienia</h2>
+        position: relative;">
+        Twoje zamówienia
+    </h2>
 
     <div>
 
@@ -25,7 +27,7 @@
 
                 @foreach (var zamowienie in Model)
                 {
-                    <tr @if (zamowienie.StanZamowienia == HurtowniaMVC.Models.StanZamowienia.New) { <text> class="newOrder" </text>      }>
+                    <tr>
                         <td>
                             <strong>Nr zamówienia: </strong>@zamowienie.ZamowienieId
                         </td>
@@ -33,23 +35,7 @@
                             <strong>Data: </strong>
                             @zamowienie.DataZamowienia.ToString("dd-MM-yyyy")
                         </td>
-                        <td>
-                            <strong>Stan: </strong><br />
-
-                            @if (ViewBag.UserIsAdmin)
-                            {
-                                using (Html.BeginForm("ChangeOrderState", "Manage"))
-                                {
-                                    @Html.HiddenFor(z => zamowienie.ZamowienieId)
-                                    @Html.EnumDropDownListFor(z => zamowienie.StanZamowienia, new { @class = "orderstateddl"  })
-                                }
-                            }
-                            else
-                            {
-                                @Html.DisplayFor(z => zamowienie.StanZamowienia)
-                            }
-
-                        </td>
+               
 
                         <td>
                             <strong>Dane wysyłkowe:</strong><br />
@@ -60,6 +46,14 @@
                         <td>
                             <strong>Łączny koszt:</strong> @zamowienie.KwotaZamowienia zł
                         </td>
+                        @if (ViewBag.UserIsAdmin)
+                        {
+                            <td>
+                                
+                                <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "Manage", new { id = zamowienie.ZamowienieId })';return false;">Usuń &raquo;</button>
+                            </td>
+                          
+                        }
                     </tr>
                     <tr>
                         <td colspan="6">
@@ -70,12 +64,12 @@
                                     {
                                         <li>
                                             <article style="font-size:small; position:center">
-                                                <a   href="@Url.Action("Details", "Store", new { id = zamownienieCzesc.CzescId })">
-                                                    
-                                                    
-                                                        @zamownienieCzesc.Czesc.Nazwa<br />
-                                                        sztuk: @zamownienieCzesc.Quantity, łącznie: @(zamownienieCzesc.Quantity * zamownienieCzesc.UnitPrice)  zł
-                                                    
+                                                <a href="@Url.Action("Details", "Store", new { id = zamownienieCzesc.CzescId })">
+
+
+                                                    @zamownienieCzesc.Czesc.Nazwa<br />
+                                                    sztuk: @zamownienieCzesc.Quantity, łącznie: @(zamownienieCzesc.Quantity * zamownienieCzesc.UnitPrice)  zł
+
                                                 </a>
                                             </article>
                                         </li>
@@ -108,27 +102,3 @@
 
 
 </div>
-
-@section ScriptsBottom{
-<script src="~/Scripts/jquery-3.1.1.js"></script>
-<script>
-    $(".orderstateddl").on('change', function (e) {
-        //e.preventDefault();
-
-        var f = $(this.form);
-        var tr = f.closest("tr");
-
-        var action = f.attr("action");
-        var serializedForm = f.serialize();
-        $.post(action, serializedForm).done(function (data) {
-            if (data == '@HurtowniaMVC.Models.StanZamowienia.New.ToString()') {
-                tr.addClass("newOrder")
-            }
-            else {
-                tr.removeClass("newOrder");
-            }
-          });
-    });
-</script>
-
-}

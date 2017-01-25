@@ -119,6 +119,10 @@ namespace HurtowniaMVC.Controllers
                 return RedirectToAction("Index");
             }
         }
+        public ActionResult Index2()
+        {
+            return View(RoleManager.Roles);
+        }
 
     }
 }
