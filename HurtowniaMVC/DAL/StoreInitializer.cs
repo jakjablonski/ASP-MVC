@@ -14,7 +14,7 @@ using System.Web;
 namespace HurtowniaMVC.DAL
 {
 
-    public class StoreInitializer : DropCreateDatabaseAlways<StoreContext>
+    public class StoreInitializer : DropCreateDatabaseIfModelChanges<StoreContext>
     {
         protected override void Seed(StoreContext context)
         {
@@ -37,12 +37,16 @@ namespace HurtowniaMVC.DAL
 
             var czesci = new List<Czesc>
             {
-                new Czesc { Nazwa = "Czesc1", Cena = 1 ,KategoriaId=1},
-                new Czesc { Nazwa = "Czesc2", Cena = 2 ,KategoriaId=1},
-                new Czesc { Nazwa = "Czesc3", Cena = 3 ,KategoriaId=1},
-                new Czesc { Nazwa = "Czesc4", Cena = 4 ,KategoriaId=2},
-                new Czesc { Nazwa = "Czesc5", Cena = 5 ,KategoriaId=2},
-                new Czesc { Nazwa = "Czesc6", Cena = 6 ,KategoriaId=2},
+                new Czesc { Nazwa = "Czesc0001", Cena = 1 ,KategoriaId=1},
+                new Czesc { Nazwa = "Czesc0002", Cena = 2 ,KategoriaId=1},
+                new Czesc { Nazwa = "Czesc0003", Cena = 3 ,KategoriaId=1},
+                new Czesc { Nazwa = "Czesc0004", Cena = 4 ,KategoriaId=2},
+                new Czesc { Nazwa = "Czesc0005", Cena = 5 ,KategoriaId=2},
+                new Czesc { Nazwa = "Czesc0006", Cena = 6 ,KategoriaId=2},
+                new Czesc { Nazwa = "Czesc0007", Cena = 6 ,KategoriaId=2},
+                new Czesc { Nazwa = "Czesc0008", Cena = 6 ,KategoriaId=2},
+                new Czesc { Nazwa = "Czesc0009", Cena = 6 ,KategoriaId=1},
+                new Czesc { Nazwa = "Czesc0010", Cena = 6 ,KategoriaId=1},
 
             };
             czesci.ForEach(cz => context.Czesc.Add(cz));
@@ -72,7 +76,7 @@ namespace HurtowniaMVC.DAL
             var user = userManager.FindByName(name);
             if (user == null)
             {
-                user = new ApplicationUser { UserName = name, Email = name, UserData = new UserData() };
+                user = new ApplicationUser { UserName = name, Email = name , UserData = new UserData() };
                 var result = userManager.Create(user, password);
                 result = userManager.SetLockoutEnabled(user.Id, false);
             }

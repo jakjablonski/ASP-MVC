@@ -11,6 +11,8 @@ using System.Data.Entity;
 using System.Threading.Tasks;
 using System.Web;
 using HurtowniaMVC.DAL;
+
+using HurtowniaMVC.Models;
 using Hurtownia.Models;
 
 namespace HurtowniaMVC.App_Start

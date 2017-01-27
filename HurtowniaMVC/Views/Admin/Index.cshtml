@@ -3,40 +3,47 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_StoreLayout.cshtml";
 }
+<button class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Admin")';return false;">Dodaj &raquo;</button>      
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nazwa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cena)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kategoria)
+        </th>
+        <th>
+            Akcja:
+        </th>
 
-    
-        @foreach (var item in Model)
-
-
-
-
-        {
-            <table class="fixed-height fixed-width fixed-cell table-spacing border-collapse:separate;">
-                <tr style="border-spacing: 5px 5px;">
-                    <td style="border-spacing: 5px 5px;">
-                        @Html.DisplayFor(modelItem => item.Nazwa)
-                    </td>
-                    <td style="border-spacing: 5px 5px;">
-                        @Html.DisplayFor(modelItem => item.Cena)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Kategoria.Nazwa)
-                    </td>
-
-
-                    <td>
-                        <button class="btn btn-primary" onclick="location.href='@Url.Action("Details", new {id = item.CzescId })';return false;">Podgląd &raquo;</button>
-                        @if ((ViewBag.userAdmin == true) || (ViewBag.userUzytkownik == true))
-                {
-                            <button class="btn btn-warning" onclick="location.href='@Url.Action("Edit", new {id = item.CzescId})';return false;">Edytuj &raquo;</button>
-                        }
-                        @if (ViewBag.userAdmin == true)
-                {
-                            <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete", new {id = item.CzescId })';return false;">Usuń &raquo;</button>
-                        }
-                    </td>
-                </tr>
-            </table>
             
-        }
- <button class="btn btn-danger" onclick="location.href='@Url.Action("Create", "Admin")';return false;">Dodaj &raquo;</button>           
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nazwa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cena)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kategoria.Nazwa)
+            </td>
+
+            <td>
+
+                <button class="btn btn-primary" onclick="location.href='@Url.Action("Details", new {id = item.CzescId })';return false;">Podgląd &raquo;</button>
+
+                <button class="btn btn-warning" onclick="location.href='@Url.Action("Edit", new {id = item.CzescId})';return false;">Edytuj &raquo;</button>
+
+
+                <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete", new {id = item.CzescId })';return false;">Usuń &raquo;</button>
+
+            </td>
+        </tr>
+    }
+</table>

@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace HurtowniaMVC.ViewModels
 {
@@ -25,5 +26,7 @@ namespace HurtowniaMVC.ViewModels
 
         [EmailAddress(ErrorMessage = "Błędny format adresu e-mail.")]
         public string Email { get; set; }
+
+       
     }
 }

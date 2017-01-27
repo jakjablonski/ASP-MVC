@@ -1,19 +1,19 @@
-﻿@model IEnumerable<HurtowniaMVC.Models.ApplicationRole>
+﻿@model IEnumerable<Hurtownia.Models.ApplicationUser>
 @{
-    ViewBag.Title = "Index2";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_StoreLayout.cshtml";
 }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h2>Lista Uzytkowników</h2>
+<a href="@Url.Action("Index", "Role")">Dodaj /Usuń Role</a>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.UserName)
         </th>
+        @*Add a table header for the Address info:*@
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.Roles)
         </th>
         <th>
         </th>
@@ -22,15 +22,13 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.UserName)
             </td>
+      
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-
                 <button class="btn btn-primary" onclick="location.href='@Url.Action("Edit", new {id = item.Id })';return false;">Edytuj </button>
                 <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete", new {id = item.Id })';return false;">Usuń </button>
+                
                 
             </td>
         </tr>

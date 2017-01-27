@@ -12,6 +12,7 @@ using HurtowniaMVC.DAL;
 using Hurtownia.Models;
 using HurtowniaMVC.App_Start;
 using Microsoft.AspNet.Identity.Owin;
+using System.Threading.Tasks;
 
 namespace HurtowniaMVC.Controllers
 {
@@ -63,66 +64,127 @@ namespace HurtowniaMVC.Controllers
 
         public ActionResult Index()
         {
-            var users = UserManager.Users.ToList();
-            var roles = new List<Models.Roles>();
-
-            foreach (var user in users)
-            {
-                var r = new Models.Roles
-                {
-                    UserName = user.UserName,
-                    UserId = user.Id
-                };
-                roles.Add(r);
-            }
-            
-            foreach (var user in roles)
-            {
-                user.RoleNames = UserManager.GetRoles(UserManager.Users.First(s => s.UserName == user.UserName).Id);
-            }
-            return View(roles);
-
-            
-        }
-
-        public ActionResult Edit(string id)
-        {
-           
-            var userName = UserManager.FindById(id);
-            ViewBag.user = userName.UserName;
-            bool rola = UserManager.IsInRole(id, "Uzytkownik");
-            if (rola == true) { ViewBag.role = "Uzytkownik"; }
-            else { ViewBag.role = "Admin"; }
-            var roles = RoleManager.Roles.ToList();
-            ViewBag.userroles = new SelectList(roles, "Id", "Name");
-            return View();
-        }
-
-        [HttpPost, ActionName("Edit")]
-        public ActionResult EditConfirmed(string id, FormCollection Form)
-        {
-            
-            string oldRoleId = "";
-            string newRoleId = Request.Form["userroles"];
-            bool rola = UserManager.IsInRole(id, "Uzytkownik");
-            if (newRoleId == "1") { newRoleId = "Admin"; }
-            else { newRoleId = "Uzytkownik"; }
-            if (rola == true) { oldRoleId = "Uzytkownik"; } else { oldRoleId = "Admin"; }
-            if (newRoleId == oldRoleId)
-            {
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                UserManager.RemoveFromRole(id, oldRoleId);
-                UserManager.AddToRole(id, newRoleId);
-                return RedirectToAction("Index");
-            }
-        }
-        public ActionResult Index2()
-        {
             return View(RoleManager.Roles);
         }
 
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Roles/Create
+        [HttpPost]
+        public async Task<ActionResult> Create(RoleViewModel roleViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var role = new ApplicationRole(roleViewModel.Name);
+
+                // Save the new Description property:
+                role.Description = roleViewModel.Description;
+                var roleresult = await RoleManager.CreateAsync(role);
+                if (!roleresult.Succeeded)
+                {
+                    ModelState.AddModelError("", roleresult.Errors.First());
+                    return View();
+                }
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+
+
+        // GET: /Roles/Edit/Admin
+        public async Task<ActionResult> Edit(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var role = await RoleManager.FindByIdAsync(id);
+            if (role == null)
+            {
+                return HttpNotFound();
+            }
+            RoleViewModel roleModel = new RoleViewModel { Id = role.Id, Name = role.Name };
+
+            // Update the new Description property for the ViewModel:
+            roleModel.Description = role.Description;
+            return View(roleModel);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit([Bind(Include = "Name,Id,Description")] RoleViewModel roleModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var role = await RoleManager.FindByIdAsync(roleModel.Id);
+                role.Name = roleModel.Name;
+
+                // Update the new Description property:
+                role.Description = roleModel.Description;
+                await RoleManager.UpdateAsync(role);
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+
+        public async Task<ActionResult> Delete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var role = await RoleManager.FindByIdAsync(id);
+            if (role == null)
+            {
+                return HttpNotFound();
+            }
+            return View(role);
+        }
+
+        //
+        // POST: /Roles/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteConfirmed(string id, string deleteUser)
+        {
+            if (ModelState.IsValid)
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                var role = await RoleManager.FindByIdAsync(id);
+                if (role == null)
+                {
+                    return HttpNotFound();
+                }
+                IdentityResult result;
+                if (deleteUser != null)
+                {
+                    result = await RoleManager.DeleteAsync(role);
+                }
+                else
+                {
+                    result = await RoleManager.DeleteAsync(role);
+                }
+                if (!result.Succeeded)
+                {
+                    ModelState.AddModelError("", result.Errors.First());
+                    return View();
+                }
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+     
     }
 }

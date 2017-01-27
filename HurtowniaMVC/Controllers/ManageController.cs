@@ -262,8 +262,7 @@ namespace HurtowniaMVC.Controllers
             // For admin users - return all orders
             if (isAdmin)
             {
-                userZamowienie = db.Zamowienie.Include("ZamowienieCzesc").
-                    OrderByDescending(o => o.DataZamowienia).ToArray();
+                userZamowienie = db.Zamowienie.Include("ZamowienieCzesc").OrderByDescending(o => o.DataZamowienia).ToArray();
             }
             else
             {

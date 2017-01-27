@@ -213,6 +213,7 @@
     <Content Include="Prototype\index.html" />
     <Content Include="Prototype\shop.html" />
     <Content Include="Prototype\single-product.html" />
+    <None Include="Properties\PublishProfiles\Hurtownia - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\Hurtownia - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\HurtowniaMVC20170124041334 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
@@ -240,6 +241,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\StoreContext.cs" />
     <Compile Include="DAL\StoreInitializer.cs" />
     <Compile Include="Global.asax.cs">
@@ -248,11 +250,13 @@
     <Compile Include="Infrastructure\ISessionManager.cs" />
     <Compile Include="Infrastructure\SessionManager.cs" />
     <Compile Include="Infrastructure\ShoppingCartManager.cs" />
+    <Compile Include="Models\ApplicationRole.cs" />
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\Czesc.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Kategoria.cs" />
     <Compile Include="Models\Roles.cs" />
+    <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Models\UserData.cs" />
     <Compile Include="Models\Zamowienie.cs" />
     <Compile Include="Models\ZamowienieCzesc.cs" />
@@ -263,6 +267,7 @@
     <Compile Include="ViewModels\AcccountViewModel.cs" />
     <Compile Include="ViewModels\CartRemoveViewModel.cs" />
     <Compile Include="ViewModels\CartViewModel.cs" />
+    <Compile Include="ViewModels\EditUserViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModel.cs" />
     <Compile Include="ViewModels\RoleViewModel.cs" />
@@ -291,7 +296,7 @@
     <Content Include="Views\Manage\OrdersList.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Enum.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
-    <Content Include="Views\Role\Edit.cshtml" />
+    <Content Include="Views\Role\Editw.cshtml" />
     <Content Include="Views\Admin\Create.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Details.cshtml" />
@@ -299,6 +304,11 @@
     <Content Include="Views\Admin\Delete.cshtml" />
     <Content Include="Views\Manage\Delete.cshtml" />
     <Content Include="Views\Role\Index2.cshtml" />
+    <Content Include="Views\Role\Create.cshtml" />
+    <Content Include="Views\Role\Edit.cshtml" />
+    <Content Include="Views\Role\Delete.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

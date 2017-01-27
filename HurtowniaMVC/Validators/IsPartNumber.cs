@@ -12,8 +12,7 @@ namespace HurtowniaMVC.Validators
         {
             string errorMessage;
             string nazwa;
-            int x;
-
+           
 
             if (value is string)
                 nazwa = value.ToString();
@@ -22,9 +21,9 @@ namespace HurtowniaMVC.Validators
 
             int dlugosc = nazwa.Length;
 
-            if (dlugosc < 6)
+            if (dlugosc != 9)
             {
-                errorMessage = "nazwa musi się skladac z wiecej niz 6 znaków";
+                errorMessage = "nazwa musi się skladac z 9 znaków";
                 return new ValidationResult(errorMessage);
             }
 
@@ -34,8 +33,14 @@ namespace HurtowniaMVC.Validators
                     errorMessage = "nazwa musi byc w formacie  czesc[0-9][0-9][0-9][0-9]";
                     return new ValidationResult(errorMessage);
                 }
+            for (int i = 5; i < 9; i++)
+                if (!Char.IsNumber(nazwa[i]))
+                {
+                    errorMessage = "nazwa musi byc w formacie  czesc[0-9][0-9][0-9][0-9]";
+                    return new ValidationResult(errorMessage);
+                }
 
-            
+
             return ValidationResult.Success;
         }
 
